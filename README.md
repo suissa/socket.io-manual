@@ -202,6 +202,43 @@ Agora vamo testar nosso chat se está enviando a mensagem e o servidor está rec
 ![](https://cldup.com/VkN6AJOB6f-1200x1200.png)
 
 
+###Broadcasting
+Nosso próximo objetivo é emitir um evento do servidor para o resto dos usuários. Se precisamos emitir um evento usaremos a mesma função que o nosso frontend, porém em vez de ser no `socket` será no `io` que é nosso servidor que gerencia os sockets.
+
+```
+io.emit('algum evento', { para: 'todos' });
+```
+
+Caso você queira emitir um eventos para todos menos para um `socket` pode usar `socket.broadcast.emit(evento)` como visto no código abaixo:
+
+```
+io.on('connection', function(socket){
+  socket.broadcast.emit('hi');
+});
+```
+
+Porém no nosso exemplo, apenas para continuar simples, iremos emitir o evento para todos, incluindo o emissor.
+
+```
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+```
+
+
+Depois disso precisamos mudar nosso `index.html` para receber esse evento do servidor.
+
+```js
+socket.on('chat message', function(msg){
+  $('#messages').append($('<li>').text(msg));
+});
+```
+
+Para testar abra mais abas e envie uma mensagem em uma delas clickando no botão send e depois confira nas outras abas.
+
+![](https://cldup.com/tRsIM2kApm-3000x3000.png)
 
 
 
