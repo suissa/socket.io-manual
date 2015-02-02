@@ -7,6 +7,7 @@
 
 Criar um chat com socket.io é como se fosse um Hello World, além de ser altamente usado no mundo real, ainda é o primeiro exemplo que os desenvolvedores fazem, então mãos a obra.
 
+###Criando servidor web
 Primeiramente vamos criar uma aplicação express sem simples, para isso vamos criar seu package.json, você pode usar o comando `npm init` para isso e ele precisa ficar igual a esse:
 
 ```js
@@ -77,6 +78,8 @@ app.get('/', function(req, res){
 ```
 
 ![Screenshot do index.html](https://cldup.com/DmTV-jmdaz-3000x3000.png)
+
+###Integrando o socket.io
 
 Já criamos a nossa interface básica, agora precisamos instalar o socket.io o qual é dividido em 2 partes:
 
@@ -162,5 +165,43 @@ Perceba que o `disconnect` não está no `io` que é nosso servidor e sim em **c
 Agora você pode atualizar um aba várias vezes e terá o seguinte resultado:
 
 ![](https://cldup.com/_eJqTwAVyi-2000x2000.png)
+
+###Emitindo eventos
+
+A principal ideia por trás do Socket.io é que você possa enviar e receber qualquer evento e qualquer dado que você quiser. Você pode enviar qualquer objeto que possa ser convertido para JSON, dados binários também são suportados.
+
+Vamos emitir um evento quando o usuário escrever uma menssagem, o servidor receberá um evento chamado `chat message`, porém para fazermos nosso exemplo mais fácil utilizaremos o jQuery e enviamos os dados quando emitimos o evento.
+
+```
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  var socket = io();
+  $('form').submit(function(){
+    var mensagem = $('#m').val();
+    socket.emit('chat message', mensagem);
+    $('#m').val('');
+    return false;
+  });
+</script>
+```
+
+O envio da mensagem se dá nessa linha `socket.emit('chat message', $('#m').val());`. Fácil perceber que a função `emit` é a responsável por emitirmos um evento que será recebido via socket no nosso servidor.
+
+Depois só precisamos ouvir esse evento no servidor.
+
+```
+socket.on('chat message', function(msg){
+  console.log('message: ' + msg);
+});
+```
+
+Agora vamo testar nosso chat se está enviando a mensagem e o servidor está recebendo.
+
+![](https://cldup.com/jiMht0-GPF.thumb.png)
+
+![](https://cldup.com/VkN6AJOB6f-1200x1200.png)
+
+
+
 
 
