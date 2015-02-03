@@ -170,7 +170,7 @@ Agora você pode atualizar um aba várias vezes e terá o seguinte resultado:
 
 A principal ideia por trás do Socket.io é que você possa enviar e receber qualquer evento e qualquer dado que você quiser. Você pode enviar qualquer objeto que possa ser convertido para JSON, dados binários também são suportados.
 
-Vamos emitir um evento quando o usuário escrever uma menssagem, o servidor receberá um evento chamado `chat message`, porém para fazermos nosso exemplo mais fácil utilizaremos o jQuery e enviamos os dados quando emitimos o evento.
+Vamos emitir um evento quando o usuário escrever uma mensagem, o servidor receberá um evento chamado `chat message`, porém para fazermos nosso exemplo mais fácil utilizaremos o jQuery e enviamos os dados quando emitimos o evento.
 
 ```
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
