@@ -275,7 +275,7 @@ io.sockets.emit('oi', 'para todos');
 io.emit('oi', 'para todos'); // forma curta
 ```
 
-Cada namespace emite um evento de conexão que recebe cada soclet como parâmetro.
+Cada namespace emite um evento de conexão que recebe cada socket como parâmetro.
 
 ```js
 io.on('connection', function(socket){
@@ -284,13 +284,12 @@ io.on('connection', function(socket){
 ```
 
 ####Namespaces personalizados
-Para configurar um espaço para nome personalizado, você pode ligar a função of no servidor:
-
+Para configurar um namespace personalizado, você pode chamar a função of no servidor:
 
 ```js
 var nsp = io.of('/meu-namespace');
 nsp.on('connection', function(socket){
-  console.log('alguém conectou'):
+  console.log('alguém conectou');
 });
 nsp.emit('oi', 'para todos!');
 ```
@@ -329,9 +328,7 @@ Para deixar um canal você pode chamar `leave` da mesma forma que o `join`.
 Cada Socket no Socket.io é identificado por um randômico e únido identificador `Socket.io#id`. Para nossa facilidade, cada socket automaticamente entra em uma sala identificada por esse id.
 
 ###Desconectando
-Após a desconexão, sockets chamam `leave` em todos os canais que ele fazia parte automaticamente
-
-Upon disconnection, sockets leave all the channels they were part of automatically, and no specially teardown is needed on your part.
+Após a desconexão, sockets chamam `leave` em todos os canais que ele fazia parte automaticamente.
 
 ###O envio de mensagens a partir do mundo exterior
 Em alguns casos, você pode querer emitir eventos para sockets em Socket.IO de fora do contexto do seu processo do Socket.io.
@@ -360,7 +357,6 @@ setInterval(function(){
 }, 5000);
 ```
 
-
-
+Estou em um lugar em wifi esse estava no draft, depois atualizarei com as imagens e mais exeplos.
 
 
