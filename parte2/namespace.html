@@ -22,10 +22,21 @@
     <script src="jquery-1.11.1.min.js"></script>
     <script>
       var socket = io();
-      var s = io('meu-namespace');
+      var namespace = io.connect('/namespace');
+      var content = $('#namespace-content');
+      namespace.on('connect', function() {
+        $('#messages').append($('<li>').text('Conectado'));
+      });
+
+      namespace.on('message', function(msg) {
+        $('#messages').append($('<li>').text('Do servidor: '));
+        $('#messages').append($('<li>').text(msg));
+      });
+
       $('form').submit(function(){
         var mensagem = $('#m').val();
         socket.emit('chat message', mensagem);
+        console.log('msg: ', mensagem);
         $('#m').val('');
         return false;
       });
