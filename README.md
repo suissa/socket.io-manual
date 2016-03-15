@@ -8,7 +8,7 @@
 Criar um chat com socket.io é como se fosse um Hello World, além de ser altamente usado no mundo real, ainda é o primeiro exemplo que os desenvolvedores fazem, então mãos a obra.
 
 ###Criando servidor web
-Primeiramente vamos criar uma aplicação express sem simples, para isso vamos criar seu package.json, você pode usar o comando `npm init` para isso e ele precisa ficar igual a esse:
+Primeiramente vamos criar uma aplicação express bem simples, para isso vamos criar seu package.json, você pode usar o comando `npm init` para isso e ele precisa ficar igual a esse:
 
 ```js
 {
@@ -41,7 +41,7 @@ http.listen(3000, function(){
 ```
 
 
-Depois disso você entra na URL `localhost:3000` e verá um belo e grande **Hello World**. Agora vamos criar um `index.html` que será servido pelo Express para nosso frontend.
+Depois disso você entra na URL `localhost:3000` e verá um belo e grande **Hello World**. Agora vamos criar um `index.html` que será servido pelo Express para nosso front-end.
 
 ```html
 <!doctype html>
@@ -128,7 +128,7 @@ io.on('connection', function(socket){
 
 E no código acima estamos usando a função `on` escutando o evento `connection`e recebendo o objeto `socket` via callback.
 
-Depois disso precisamos integrar o socket.io no frontend, para isso vamos inserir o seguinte código no final, antes do `</body>`, do `index.html`:
+Depois disso precisamos integrar o socket.io no front-end, para isso vamos inserir o seguinte código no final, antes do `</body>`, do `index.html`:
 
 ```html
 
@@ -170,7 +170,7 @@ Agora você pode atualizar um aba várias vezes e terá o seguinte resultado:
 
 A principal ideia por trás do Socket.io é que você possa enviar e receber qualquer evento e qualquer dado que você quiser. Você pode enviar qualquer objeto que possa ser convertido para JSON, dados binários também são suportados.
 
-Vamos emitir um evento quando o usuário escrever uma menssagem, o servidor receberá um evento chamado `chat message`, porém para fazermos nosso exemplo mais fácil utilizaremos o jQuery e enviamos os dados quando emitimos o evento.
+Vamos emitir um evento quando o usuário escrever uma mensagem, o servidor receberá um evento chamado `chat message`, porém para fazermos nosso exemplo mais fácil utilizaremos o jQuery e enviamos os dados quando emitimos o evento.
 
 ```
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
